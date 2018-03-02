@@ -1,0 +1,16 @@
+<%include ../layout/header.ejs %>
+<form action="/posts/add" method="post" enctype="multipart/form-data">
+  <input type="text" name="_id" value=""><br>
+  <input type="title" name="title" value=""><br>
+  <select name="user">
+    <% users.forEach(function(user){ %>
+    <option value="<%= user._id %>"><%= user.name %></option>
+    <% }) %>
+  </select>
+  <br>
+  <input type="file"  name="image" value="">
+  <br>
+
+  <input type="submit" value="Save">
+</form>
+<%include ../layout/footer.ejs %>

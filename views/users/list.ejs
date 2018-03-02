@@ -1,0 +1,43 @@
+<%include ../layout/header.ejs %>
+
+<% if(msg != ''){ %>
+    <h3 class="alert alert-success"><%= msg %></h3>
+<%}%>
+<div>
+  <% for(var i = 1 ;i<= data.pages;i++){ %>
+  <li><a href="/users/list/<%=i%>">Page <%=i%></a></li>
+  <%}%>
+</div>
+<table class="table table-bordered">
+  <tr>
+    <th>
+      User ID
+    </th>
+    <th>
+      Name
+    </th>
+    <th>
+      Action
+    </th>
+  </tr>
+
+  <% data.docs.forEach(function(user){ %>
+    <tr>
+      <td>
+        <%= user._id %>
+      </td>
+      <td>
+        <%= user.name %>
+      </td>
+      <td>
+        <a class="btn btn-danger" href="/users/delete/<%= user._id %>">Delete</a>
+        <a class="btn btn-primary" href="/users/edit/<%= user._id %>">Edit</a>
+
+      </td>
+    </tr>
+  <% }) %>
+</table>
+
+
+
+<%include ../layout/footer.ejs %>

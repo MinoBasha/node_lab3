@@ -1,0 +1,60 @@
+<%include ../layout/header.ejs %>
+
+<% if(msg != ''){ %>
+    <h3 class="alert alert-success"><%= msg %></h3>
+<%}%>
+
+<form class="" action="/posts/search">
+  <div class="form-group row">
+    <div class="col-6">
+      <input type="text" class="form-control" name="keyword" value="">
+    </div>
+    <div class="col-6">
+      <input type="submit" value="Search" class="btn btn-success">
+    </div>
+  </div>
+</form>
+<table class="table table-bordered">
+  <tr>
+    <th>
+      Post ID
+    </th>
+    <th>
+      Title
+    </th>
+    <th>
+      Auther
+    </th>
+    <th>
+      Image
+    </th>
+    <th>
+      Action
+    </th>
+  </tr>
+
+  <% data.forEach(function(post){ %>
+    <tr>
+      <td>
+        <%= post._id %>
+      </td>
+      <td>
+        <%= post.title %>
+      </td>
+      <td>
+        <%= post.user.name %>
+      </td>
+      <td>
+        <img width="100" height="100" class="img-rotated" src="/imgs/<%= post.image %>" alt="" />
+      </td>
+      <td>
+        <a class="btn btn-danger" href="/posts/delete/<%= post._id %>">Delete</a>
+        <a class="btn btn-primary" href="/posts/edit/<%= post._id %>">Edit</a>
+
+      </td>
+    </tr>
+  <% }) %>
+</table>
+
+
+<%include ../layout/footer.ejs %>
